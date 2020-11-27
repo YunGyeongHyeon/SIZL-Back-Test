@@ -1,0 +1,13 @@
+type Mutation {
+  createAccount(
+    username: String!
+    gender: String!
+    email: String!
+    password: String!
+    nickname: String
+  ): Boolean!
+}
+
+type Query {
+  overlapUser(email: String!): Boolean!
+}

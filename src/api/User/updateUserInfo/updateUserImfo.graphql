@@ -1,0 +1,9 @@
+type Mutation {
+  updateUserInfo(
+    username: String!
+    gender: String!
+    email: String!
+    password: String!
+    nickname: String
+  ): Boolean!
+}

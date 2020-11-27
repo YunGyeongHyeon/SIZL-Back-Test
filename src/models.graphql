@@ -1,0 +1,57 @@
+type User {
+  id: ID!
+  username: String!
+  gender: String!
+  email: String!
+  posts: [Post!]
+  likes: [Like!]
+  comments: [Comment!]
+  password: String!
+  nickname: String
+  notification: [Notification!]
+}
+
+type Post {
+  id: ID!
+  username: User!
+  likes: [Like!]
+  title: String!
+  comments: [Comment!]
+  description: String!
+  uploadDay: [String!]
+  thumbnail: String!
+  category: Category
+  s3ThumbnailId: String
+  s3BackgroundImageId: String
+}
+
+type Like {
+  id: ID!
+  user: User!
+  post: Post
+  comment: Comment
+}
+
+type Comment {
+  id: ID!
+  user: User!
+  text: String!
+  post: Post!
+  likes: [Like!]
+}
+
+type Category {
+  id: ID!
+  post: [Post!]
+  genre: String!
+}
+
+type Notification {
+  id: ID!
+  url: String
+  title: String!
+  text: String!
+  imgFile: String
+  s3ImgFile: String
+  users: [User!]
+}

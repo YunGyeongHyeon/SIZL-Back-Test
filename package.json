@@ -1,0 +1,31 @@
+{
+  "name": "SIZL-Back-Test",
+  "version": "1.0.0",
+  "repository": "https://github.com/YunGyeongHyeon/SIZL-Back-Test.git",
+  "author": "YunGyeongHyeon <y300513@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
+    "dotenv": "^8.2.0",
+    "graphql": "14.7.0",
+    "graphql-tools": "6.0.7",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "merge-graphql-schemas": "^1.7.8",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "prisma": "^1.34.10",
+    "prisma-client-lib": "^1.34.10"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js",
+    "deploy": "prisma deploy",
+    "generate": "prisma generate",
+    "prisma": "yarn run deploy && yarn run generate"
+  },
+  "main": "index.js"
+}

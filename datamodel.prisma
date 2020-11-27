@@ -1,0 +1,64 @@
+type User {
+  id: ID! @id
+  username: String!
+  gender: String!
+  email: String! @unique
+  posts: [Post!] @relation(name:"PostOfUser", onDelete: CASCADE)
+  likes: [Like!] @relation(name:"LikesOfUser", onDelete: CASCADE)
+  comments: [Comment!] @relation(name:"CommentsOfUser",onDelete: CASCADE)
+  password: String!
+  nickname: String
+  notification :[Notification!] @relation(name:"NotificationOfUser" ,onDelete:SET_NULL)
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+type Post {
+  id: ID! @id
+  username: User! @relation(name:"PostOfUser", onDelete:SET_NULL)
+  likes: [Like!] @relation(name:"LikesOfPost",onDelete: CASCADE)
+  title: String!
+  comments: [Comment!] @relation(name:"CommentsOfPost",onDelete:CASCADE)
+  description: String!
+  uploadDay: [String!] @scalarList(strategy: RELATION)
+  thumbnail: String!
+  category: Category @relation(name:"CategoryOfPost",onDelete:SET_NULL)
+  s3ThumbnailId: String
+  s3BackgroundImageId: String
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
+}
+
+type Like {
+  id: ID! @id
+  user: User! @relation(name:"LikesOfUser",onDelete:SET_NULL)
+  post: Post @relation(name:"LikesOfPost",onDelete:SET_NULL)
+  comment: Comment @relation(name:"LikesOfComment")
+}
+
+type Comment {
+  id: ID! @id
+  user: User! @relation(name:"CommentsOfUser",onDelete:SET_NULL)
+  text: String!
+  post: Post! @relation(name:"CommentsOfPost",onDelete:SET_NULL)
+  likes: [Like!] @relation(name:"LikesOfComment", onDelete:CASCADE)
+  createdAt: DateTime @createdAt
+  updateAt: DateTime @updateAt
+}
+
+type Category {
+  id: ID! @id
+  post: [Post!] @relation(name:"CategoryOfPost",onDelete:SET_NULL)
+  genre: String!
+}
+
+
+type Notification {
+  id: ID! @id
+  url: String
+  title: String!
+  text: String!
+  imgFile: String
+  s3ImgFile: String
+  users: [User!] @relation(name:"NotificationOfUser",onDelete:SET_NULL)
+}
