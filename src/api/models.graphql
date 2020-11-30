@@ -17,9 +17,8 @@ type Post {
   likes: [Like!]
   title: String!
   comments: [Comment!]
-  description: String!
+  content: String!
   uploadDay: [String!]
-  thumbnail: String!
   category: Category
   s3ThumbnailId: String
   s3BackgroundImageId: String

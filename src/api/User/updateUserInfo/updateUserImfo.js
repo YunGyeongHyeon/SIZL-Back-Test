@@ -2,7 +2,7 @@ import { prisma } from "../../../../generated/prisma-client";
 
 export default  {
     Mutation: {
-        updateUserInfo: async(_, args) => {
+        updateUserInfo: async(_, args, {request}) => {
             const {
                 username,
                 gender,
@@ -11,9 +11,20 @@ export default  {
                 nickname
             } = args;
 
-            //로그인한 아이디 찾기
-            // const preInfo = prisma.$exists.user({id:""})
+            const { user } = request;
 
+            await prisma.updateUser({
+                where:{id:user.id},
+                data:{
+                    username, 
+                    gender, 
+                    email, 
+                    password, 
+                    nickname
+                }
+            });
+
+            return true;
             
         }
     }

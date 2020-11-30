@@ -7,28 +7,27 @@ export default {
             const {
                 email
             }   = args;
-            console.log(request);
             const result = await prisma.$exists.user({email});
 
             return result;
         }
     },
     Mutation: {
-        createAccount: async(_,args, {request}) => {
+        createAccount: async(_,args) => {
             const {
                 username,
                 gender,
                 email,
-                password
+                password,
+                nickname
             } = args;
-            console.log(args);
-            console.log(request);
-                // await prisma.createUser({
-                //     email,
-                //     gender,
-                //     password,
-                //     username
-                // });
+                await prisma.createUser({
+                    email,
+                    gender,
+                    password,
+                    username,
+                    nickname
+                });
             return true;
         }
       

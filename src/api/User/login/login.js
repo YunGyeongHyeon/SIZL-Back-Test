@@ -3,8 +3,8 @@ import { generateToken } from "../../../utils";
 
 
 export default {
-    Query: {
-        login: async (_, args) => {
+    Mutation: {
+        login: async (_, args,{request}) => {
             try {
                 const { email, password } = args;
                 const user = await prisma.user({email});
